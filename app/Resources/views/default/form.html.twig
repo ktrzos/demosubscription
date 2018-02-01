@@ -1,0 +1,9 @@
+{# form \Symfony\Component\Form\FormView #}
+
+{% extends 'base.html.twig' %}
+
+{% form_theme form with 'form_div_layout.html.twig' %}
+
+{% block body %}
+    {{ form(form) }}
+{% endblock %}

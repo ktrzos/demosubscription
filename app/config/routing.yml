@@ -1,0 +1,14 @@
+homepage:
+    path: /
+    defaults:
+        _controller: AppBundle:Default:index
+
+form:
+    path: /form
+    defaults:
+        _controller: AppBundle:Default:form
+
+list:
+    path: /list
+    defaults:
+        _controller: AppBundle:Default:list

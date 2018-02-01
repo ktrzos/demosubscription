@@ -1,0 +1,39 @@
+AppBundle\Entity\Subscription:
+    type: entity
+    table: subscriptions
+    repositoryClass: AppBundle\Repository\SubscriptionRepository
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        userId:
+            type: integer
+            nullable: true
+        shippingAddress:
+            type: integer
+            nullable: true
+        billingAddress:
+            type: integer
+            nullable: true
+        status:
+            type: string
+            nullable: false
+            length: 16
+        pack:
+            type: integer
+            nullable: true
+        startedAt:
+            type: datetime
+            nullable: true
+        updatedAt:
+            type: datetime
+            nullable: true
+        createdAt:
+            type: datetime
+            nullable: false
+    oneToMany:
+        payments:
+            targetEntity: AppBundle\Entity\SubscriptionPayment
+            mappedBy: subscription
+            cascade: ["persist", "merge"]

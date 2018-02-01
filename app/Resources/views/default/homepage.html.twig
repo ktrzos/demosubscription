@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <p>
+        {{- 'Actions' ~ ':' -}}
+    </p>
+    <ul>
+        <li>
+            <a href="{{ path('form') }}">
+                {{- 'Form' -}}
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('list') }}">
+                {{- 'Subscriptions list' -}}
+            </a>
+        </li>
+    </ul>
+{% endblock %}

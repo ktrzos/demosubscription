@@ -1,0 +1,27 @@
+# PhpStorm configuration files
+.idea/*
+!.idea/composerJson.xml
+!.idea/misc.xml
+!.idea/encodings.xml
+!.idea/symfony2.xml
+!.idea/vcs.xml
+!.idea/php.xml
+!.idea/watcherTasks.xml
+
+/.web-server-pid
+/app/config/parameters.yml
+/build/
+/phpunit.xml
+/var/*
+!/var/cache
+/var/cache/*
+!var/cache/.gitkeep
+!/var/logs
+/var/logs/*
+!var/logs/.gitkeep
+!/var/sessions
+/var/sessions/*
+!var/sessions/.gitkeep
+!var/SymfonyRequirements.php
+/vendor/
+/web/bundles/

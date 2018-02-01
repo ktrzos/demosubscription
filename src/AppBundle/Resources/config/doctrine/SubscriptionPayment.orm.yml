@@ -1,0 +1,30 @@
+AppBundle\Entity\SubscriptionPayment:
+    type: entity
+    table: subscriptions_payments
+    repositoryClass: AppBundle\Repository\SubscriptionPaymentRepository
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        chargedAmount:
+            type: integer
+            nullable: false
+        date:
+            type: datetime
+            nullable: true
+        updatedAt:
+            type: datetime
+            nullable: true
+        createdAt:
+            type: datetime
+            nullable: false
+    manyToOne:
+        subscription:
+            targetEntity: AppBundle\Entity\Subscription
+            inversedBy: payments
+            joinColumn:
+                name: subscription_id
+                referencedColumnName: id
+                onDelete: CASCADE
+                nullable: false
