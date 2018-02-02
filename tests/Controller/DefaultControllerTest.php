@@ -37,7 +37,7 @@ class DefaultControllerTest extends WebTestCase
         self::assertNotNull($a1);
         self::assertNotNull($a2);
 
-        self::assertSame('/homepage', $a0->getAttribute('href'));
+        self::assertSame('/', $a0->getAttribute('href'));
         self::assertSame('/form', $a1->getAttribute('href'));
         self::assertSame('/list', $a2->getAttribute('href'));
     }

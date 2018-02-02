@@ -4,7 +4,7 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "AppBundle\\": "src/AppBundle"
+            "AppBundle\\": "src"
         },
         "classmap": [
             "app/AppKernel.php",
@@ -69,6 +69,8 @@
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
         },
-        "branch-alias": null
+        "branch-alias": {
+            "dev-master": "1.x.x-dev"
+        }
     }
 }
