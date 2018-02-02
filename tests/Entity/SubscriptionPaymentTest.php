@@ -46,9 +46,10 @@ class SubscriptionPaymentTest extends \Symfony\Bundle\FrameworkBundle\Test\Kerne
     {
         self::bootKernel();
 
-        $manager = self::$kernel->getContainer()->get('doctrine.orm.entity_manager');
-        $meta    = $manager->getClassMetadata(SubscriptionPayment::class);
-        $fields  = $meta->getFieldNames();
+        $manager     = self::$kernel->getContainer()->get('doctrine.orm.entity_manager');
+        $meta        = $manager->getClassMetadata(SubscriptionPayment::class);
+        $fields      = $meta->getFieldNames();
+        $assocations = $meta->getAssociationNames();
 
         self::assertContains('id', $fields);
         self::assertContains('chargedAmount', $fields);
@@ -56,5 +57,8 @@ class SubscriptionPaymentTest extends \Symfony\Bundle\FrameworkBundle\Test\Kerne
         self::assertContains('updatedAt', $fields);
         self::assertContains('createdAt', $fields);
         self::assertCount(5, $fields);
+
+        self::assertCount(1, $assocations);
+        self::assertContains('subscription', $assocations);
     }
 }

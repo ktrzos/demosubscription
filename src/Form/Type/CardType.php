@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form\Type;
 
+use AppBundle\Validator\Constraints\CardChecker;
 use Symfony\Component\Form;
 use Symfony\Component\Form\Extension\Core\Type;
 use Symfony\Component\Validator\Constraints\Luhn;
@@ -23,7 +24,7 @@ class CardType extends Form\AbstractType
             'constraints' => [
                 new NotBlank(),
                 new Luhn(),
-                new \AppBundle\Validator\Constraints\CardChecker([
+                new CardChecker([
                     'schemes' => 'AMEX'
                 ]),
             ],

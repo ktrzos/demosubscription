@@ -20,7 +20,7 @@ class SubscriptionRepository extends ORM\EntityRepository
      *
      * @return Subscription[]
      */
-    public function findWithPaymentLessThan7Days(): array
+    public function findOutdated(): array
     {
         # get outdated subscriptions IDs with use of native query
         $rsm = new ORM\Query\ResultSetMapping();
@@ -38,8 +38,15 @@ class SubscriptionRepository extends ORM\EntityRepository
             )
             WHERE 
               s.status = :status
-              AND NOW() > DATE_ADD(p.date, INTERVAL 37 DAY)
         ';
+
+        $dbDriver = $this->_em->getConnection()->getDriver()->getName();
+
+        if($dbDriver === 'pdo_sqlite') {
+            $sql .= "AND DATETIME('now','localtime') > DATETIME(p.date,'+'||'37 days')";
+        } else {
+            $sql .= 'AND NOW() > DATE_ADD(p.date, INTERVAL 37 DAY)';
+        }
 
         $query = $this->_em->createNativeQuery($this->securityFallback($sql), $rsm);
         $query->setParameter('status', Subscription::STATUS_ACTIVE);

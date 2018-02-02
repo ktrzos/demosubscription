@@ -88,9 +88,10 @@ class SubscriptionTest extends \Symfony\Bundle\FrameworkBundle\Test\KernelTestCa
     {
         self::bootKernel();
 
-        $manager = self::$kernel->getContainer()->get('doctrine.orm.entity_manager');
-        $meta    = $manager->getClassMetadata(Subscription::class);
-        $fields  = $meta->getFieldNames();
+        $manager     = self::$kernel->getContainer()->get('doctrine.orm.entity_manager');
+        $meta        = $manager->getClassMetadata(Subscription::class);
+        $fields      = $meta->getFieldNames();
+        $assocations = $meta->getAssociationNames();
 
         self::assertContains('id', $fields);
         self::assertContains('userId', $fields);
@@ -102,5 +103,8 @@ class SubscriptionTest extends \Symfony\Bundle\FrameworkBundle\Test\KernelTestCa
         self::assertContains('updatedAt', $fields);
         self::assertContains('createdAt', $fields);
         self::assertCount(9, $fields);
+
+        self::assertCount(1, $assocations);
+        self::assertContains('payments', $assocations);
     }
 }

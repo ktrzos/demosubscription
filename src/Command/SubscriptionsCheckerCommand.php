@@ -30,7 +30,7 @@ class SubscriptionsCheckerCommand extends ContainerAwareCommand
         /* @var $subscriptions Subscription[] */
         $subscriptions = $manager
             ->getRepository('AppBundle:Subscription')
-            ->findWithPaymentLessThan7Days();
+            ->findOutdated();
 
         # change status of each found subscription
         foreach($subscriptions as $subscription) {
