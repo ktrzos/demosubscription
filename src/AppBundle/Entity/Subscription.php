@@ -15,6 +15,7 @@ class Subscription
 {
     public const STATUS_NEW = 'new';
     public const STATUS_ACTIVE = 'active';
+    public const STATUS_CANCELLED = 'cancelled';
 
     /** @var int|null */
     private $id;
@@ -121,6 +122,7 @@ class Subscription
             false === \in_array($status, [
                 self::STATUS_NEW,
                 self::STATUS_ACTIVE,
+                self::STATUS_CANCELLED,
             ], true)
         ) {
             throw new \InvalidArgumentException('Invalid status value!');

@@ -40,7 +40,7 @@ class LoadFixtures extends AbstractFixture implements FixtureInterface
         $subscription3->setBillingAddress(3);
         $subscription3->setStatus(Entity\Subscription::STATUS_ACTIVE);
         $subscription3->setPack(7);
-        $subscription2->setStartedAt(new \DateTime('2017-04-15'));
+        $subscription3->setStartedAt(new \DateTime('2017-04-15'));
 
         $manager->persist($subscription1);
         $manager->persist($subscription2);
@@ -48,7 +48,7 @@ class LoadFixtures extends AbstractFixture implements FixtureInterface
 
         # create subscriptions payments
         $payment1 = new Entity\SubscriptionPayment();
-        $payment1->setSubscription($subscription1);
+        $payment1->setSubscription($subscription2);
         $payment1->setChargedAmount(2400);
         $payment1->setDate(new \DateTime('2017-04-01'));
 

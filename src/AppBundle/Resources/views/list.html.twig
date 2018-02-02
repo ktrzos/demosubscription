@@ -1,0 +1,41 @@
+{# subscriptions \AppBundle\Entity\Subscription[] #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <p>List of subscriptions:</p>
+    {% if subscriptions|length > 0 %}
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Start date</th>
+                <th>Created date</th>
+                <th>End date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for sub in subscriptions %}
+                <tr>
+                    <td>{{ sub.id }}</td>
+                    <td>{{ sub.startedAt is null ? '-' : sub.startedAt.format('Y-m-d') }}</td>
+                    <td>{{ sub.createdAt.format('Y-m-d') }}</td>
+                    <td>{{ sub.payments.count > 0 ? sub.payments.first.date.modify('+30 days').format('Y-m-d') : '-' }}</td>
+                    <td>{{ sub.status }}</td>
+                    <td>
+                        <a href="#">
+                            {{- 'Extend subscription' -}}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-warning">
+            {{- 'List is empty.' -}}
+        </div>
+    {% endif %}
+{% endblock %}

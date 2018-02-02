@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Subscription;
 use AppBundle\Form\Type\CardType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,7 +23,7 @@ class DefaultController extends Controller
      */
     public function indexAction(): Response
     {
-        return $this->render('default/homepage.html.twig');
+        return $this->render('@App/homepage.html.twig');
     }
 
     /**
@@ -38,14 +39,30 @@ class DefaultController extends Controller
 
         # check if form is submitted
         if($form->isSubmitted() && $form->isValid()) {
-            $this->sendEmail();
-            $this->addFlash('success', 'Form has been sent!');
+            $manager = $this->getDoctrine()->getManager();
+
+            /* @var $entity Subscription */
+            $entity = $manager
+                ->getRepository('AppBundle:Subscription')
+                ->find(1);
+
+            if($entity !== null) {
+                $entity->setStatus(Subscription::STATUS_ACTIVE);
+                $manager->persist($entity);
+                $manager->flush();
+                $entity->setStatus(Subscription::STATUS_NEW);
+                $manager->persist($entity);
+                $manager->flush();
+
+                $this->sendEmail();
+                $this->addFlash('success', 'Form has been sent!');
+            }
 
             return $this->redirectToRoute('form');
         }
 
         # return rendered view
-        return $this->render('default/form.html.twig', [
+        return $this->render('@App/form.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -57,7 +74,13 @@ class DefaultController extends Controller
      */
     public function listAction(): Response
     {
-        return $this->render('default/list.html.twig');
+        $subscriptions = $this->getDoctrine()
+            ->getRepository('AppBundle:Subscription')
+            ->findByUser(1);
+
+        return $this->render('@App/list.html.twig', [
+            'subscriptions' => $subscriptions,
+        ]);
     }
 
     /**

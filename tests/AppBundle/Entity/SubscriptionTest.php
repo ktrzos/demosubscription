@@ -74,6 +74,7 @@ class SubscriptionTest extends \Symfony\Bundle\FrameworkBundle\Test\KernelTestCa
     {
         yield ['new', true];
         yield ['active', true];
+        yield ['cancelled', true];
         yield ['not_active', false];
         yield ['xyz', false];
     }

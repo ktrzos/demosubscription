@@ -27,13 +27,17 @@ class DefaultControllerTest extends WebTestCase
         self::assertNotNull($response);
 
         self::assertEquals(200, $response->getStatusCode());
-        self::assertCount(2, $crawler->filter('#container a'));
+        self::assertCount(3, $crawler->filter('#container a'));
 
-        $a1 = $crawler->filter('#container a')->getNode(0);
-        $a2 = $crawler->filter('#container a')->getNode(1);
+        $a0 = $crawler->filter('#container a')->getNode(0);
+        $a1 = $crawler->filter('#container a')->getNode(1);
+        $a2 = $crawler->filter('#container a')->getNode(2);
 
+        self::assertNotNull($a0);
         self::assertNotNull($a1);
         self::assertNotNull($a2);
+
+        self::assertSame('/homepage', $a0->getAttribute('href'));
         self::assertSame('/form', $a1->getAttribute('href'));
         self::assertSame('/list', $a2->getAttribute('href'));
     }

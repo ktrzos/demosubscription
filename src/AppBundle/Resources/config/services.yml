@@ -7,3 +7,9 @@ services:
     AppBundle\:
         resource: '../../*'
         exclude: '../../{Controller,DataFixtures,DependencyInjection,Entity,Repository}'
+
+    ############################
+
+    AppBundle\EventListener\DateEventListener:
+        tags:
+          - { name: doctrine.event_listener, event: preUpdate }

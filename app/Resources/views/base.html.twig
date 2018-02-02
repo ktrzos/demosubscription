@@ -1,15 +1,41 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        <div id="container">
-            {% block body %}{% endblock %}
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}Demo Subscriptions{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+<div id="container">
+    {% for flash_message in app.session.flashBag.get('success') %}
+        <div class="alert alert-success">
+            {{ flash_message }}
         </div>
-        {% block javascripts %}{% endblock %}
-    </body>
+    {% endfor %}
+
+    {% for flash_message in app.session.flashBag.get('error') %}
+        <div class="alert alert-error">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+
+    <div>
+        <span>
+            {{- 'Pages' ~ ':' -}}
+        </span>
+        <a href="{{ path('homepage') }}">
+            {{- '[Homepage]' -}}
+        </a>
+        <a href="{{ path('form') }}">
+            {{- '[Form]' -}}
+        </a>
+        <a href="{{ path('list') }}">
+            {{- '[Subscriptions list]' -}}
+        </a>
+    </div>
+
+    {% block body %}{% endblock %}
+</div>
+{% block javascripts %}{% endblock %}
+</body>
 </html>
