@@ -1,13 +1,13 @@
 <?php
 
-namespace Tests\LoadFixtures\ORM;
+namespace Tests\AppBundle\LoadFixtures\ORM;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
  * Test basic fixtures.
  *
- * @package Tests\LoadFixtures\ORM
+ * @package Tests\AppBundle\LoadFixtures\ORM
  * @author  Krzysztof Trzos
  */
 class LoadFixturesTest extends KernelTestCase

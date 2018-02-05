@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\EventListener;
+namespace Tests\AppBundle\EventListener;
 
 use AppBundle\Entity\Subscription;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 /**
  * Testing event listener which operates on entities dates.
  *
- * @package Tests\EventListener
+ * @package Tests\AppBundle\EventListener
  * @author  Krzysztof Trzos
  */
 class DateEventListenerTest extends KernelTestCase

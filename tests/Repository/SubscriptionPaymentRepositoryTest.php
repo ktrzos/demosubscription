@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Repository;
+namespace Tests\AppBundle\Repository;
 
 use AppBundle\Repository\SubscriptionPaymentRepository;
 use Doctrine\ORM\EntityRepository;
@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 /**
  * Tests for `SubscriptionPaymentRepository` Doctrine ORM repository.
  *
- * @package Tests\Repository
+ * @package Tests\AppBundle\Repository
  * @author  Krzysztof Trzos
  */
 class SubscriptionPaymentRepositoryTest extends KernelTestCase

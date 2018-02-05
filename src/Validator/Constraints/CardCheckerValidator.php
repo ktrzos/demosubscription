@@ -12,19 +12,20 @@ use Symfony\Component\Validator\Constraints\CardSchemeValidator;
 class CardCheckerValidator extends CardSchemeValidator
 {
 
-    /**
-     * Checks if the passed value is valid.
-     *
-     * @param mixed                $value      The value that should be validated
-     * @param Validator\Constraint $constraint The constraint for the validation
-     */
-    public function validate($value, Validator\Constraint $constraint)
+    /** @inheritdoc */
+    public function validate($value, Validator\Constraint $constraint): void
     {
         /* @var $constraint CardChecker */
         /* @var $obj \Symfony\Component\Form\Form */
         $obj                 = $this->context->getRoot();
-        $cardType            = $obj->getData()['card_type'];
-        $constraint->schemes = $cardType;
+        $constraint->schemes = $obj->getData()['card_type'] ?? null;
+
+        if($constraint->schemes === null) {
+            throw new Validator\Exception\MissingOptionsException(
+                'Parallel form field with card type must be defined.',
+                ['schemes']
+            );
+        }
 
         parent::validate($value, $constraint);
     }
